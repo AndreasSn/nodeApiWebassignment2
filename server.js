@@ -6,6 +6,7 @@ var bodyParser = require('body-parser');
 var express = require("express"),
     app = express(),
     port = process.env.PORT;
+var cors = require('cors')
 
 
 // routes
@@ -17,6 +18,7 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 
+app.use(cors())
 
 app.use('/api/users', userRouter);
 app.use('/api/workoutPrograms', workoutProgramRouter);
