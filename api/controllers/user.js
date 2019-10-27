@@ -45,7 +45,12 @@ const getUser = async function (req, res) {
     res.status(200).send(req.payload);
 }
 
-
+const getUsers = async function (req, res) {
+    User.find({}, function(result) {
+        console.log(result);
+        res.status(200).send(result)
+    })
+}
 module.exports = {
     login,
     createUser,
