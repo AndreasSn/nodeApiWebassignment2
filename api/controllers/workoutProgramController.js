@@ -7,6 +7,7 @@ module.exports.getAllWorkoutPrograms = function (req, res) {
     var error = req.query.err;
     WorkoutModel.find({}, function (err, items) {
         if (err) console.log("øv bøv", err)
+        
         res.status(200).send(items);
     });
 };
