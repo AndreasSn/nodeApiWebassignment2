@@ -46,9 +46,10 @@ const getUser = async function (req, res) {
 }
 
 const getUsers = async function (req, res) {
-    User.find({}, function(result) {
-        console.log(result);
-        res.status(200).send(result)
+    User.find({}, function(err, users) {
+        if(err) console.log("INGEN USERS")
+        console.log(users);
+        res.status(200).send(users)
     })
 }
 module.exports = {
