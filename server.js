@@ -1,6 +1,5 @@
 require('dotenv').config();
 require('./api/db/db');
-require('./api/config/passport');
 require('./api/models/user');
 var bodyParser = require('body-parser');
 var express = require("express"),

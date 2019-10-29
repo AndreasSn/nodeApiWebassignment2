@@ -1,6 +1,5 @@
 const mongoose = require('mongoose')
 require('dotenv');
-console.log("db url", `${process.env.MONGOLAB_URI}`);
 
 mongoose.connect(process.env.MONGOLAB_URI, {
     useCreateIndex: true,
