@@ -9,7 +9,7 @@ const saltRounds = 10;
 
 const addWorkLog = async function (req, res) {
     console.log(req.body);
-
+    console.log("FRA ADD WORK LOG", req.payload)
     var userId = req.params.id;
     console.log(req.params.id)
     
