@@ -2,10 +2,34 @@
 const express = require('express')
 const User = require('../models/user.js')
 const auth = require("../middleware/auth")
+var mongoose = require('mongoose')
 const router = express.Router()
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 
+const addWorkLog = async function (req, res) {
+    console.log(req.body);
+
+    var userId = req.params.id;
+    console.log(req.params.id)
+    
+    User.findById(userId, function (err, user) {
+        var updatedUser = user;
+        var workLogModel = mongoose.model('workLog', workLog);
+        var workLog = new workLogModel({
+            date: req.body.date,
+            workoutProgramId: req.body.workoutProgramId,
+        });
+        updatedUser.workLogs.push(workLog);
+
+        updatedUser.save(function (err) {
+            if (err) {
+                console.log(err.message);
+            }
+            res.status(201).send(updatedUser);
+        });
+    });
+}
 
 const createUser = async function (req, res) {
     // Create a new user
@@ -56,5 +80,6 @@ module.exports = {
     login,
     createUser,
     getUser,
-    getUsers
+    getUsers,
+    addWorkLog
 }

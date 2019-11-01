@@ -7,5 +7,9 @@ var auth = require('../middleware/auth');
 
 router.post('/createWorkLog', workLogController.createWorkLog);
 
-//router.get('/getWorkoutProgram/:id', auth, workoutProgramController.getWorkoutProgram);
+router.get('/getWorkLog', workLogController.getWorkLog);
+
+//router.get('/getWorkLog/:id', workLogController.getWorkLog);
+
+
 module.exports = router;

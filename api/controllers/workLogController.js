@@ -1,6 +1,5 @@
 var mongoose = require('mongoose');
 var workLogModel = require('../models/workLog');
-var workoutProgramScheme = require('../models/workoutProgram');
 
 
 module.exports.createWorkLog = function (req, res) {
@@ -22,5 +21,15 @@ module.exports.createWorkLog = function (req, res) {
         console.log("A work log id: " + req.body.workoutProgramId + " was succesfully created!");
         res.status(201).send(req.body.name);
         // saved!
+    });
+}
+
+module.exports.getWorkLog = function (req, res) {
+    workLogModel.find({}, function (err, workLog) {
+        if (!workLog) {
+            res.status(400).send('no workout program with that id')
+        }
+        console.log("Fandt et program", workLog)
+        res.status(200).send(workLog);
     });
 }

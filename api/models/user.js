@@ -1,7 +1,8 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const jwt = require('jsonwebtoken');
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcrypt');
+const workLogSchema = require('./workLog').schema;
 
 //Define a schema
 const userSchema = mongoose.Schema({
@@ -21,9 +22,7 @@ const userSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    zipCode: {
-        type: String,
-    }
+    workLogs: [workLogSchema]
 });
 
 userSchema.pre('save', async function (next) {

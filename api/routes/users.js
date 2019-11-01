@@ -9,6 +9,8 @@ router.post('/createUser', userController.createUser);
 
 router.post('/login', userController.login);
 
+router.post('/addWorkLog/:id', userController.addWorkLog);
+
 router.get('/user', auth, userController.getUser);
 
 router.get('/allUsers', userController.getUsers);
