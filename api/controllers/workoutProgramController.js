@@ -1,7 +1,6 @@
 var mongoose = require('mongoose');
 var WorkoutModel = require('../models/workoutProgram');
 var exerciseSchema = require('../models/exercise');
-var errorHandler = require('../middleware/errorhandler')
 
 module.exports.getAllWorkoutPrograms = function (req, res) {
     var error = req.query.err;

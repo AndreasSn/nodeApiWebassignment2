@@ -11,6 +11,7 @@ var cors = require('cors')
 // routes
 var userRouter = require('./api/routes/users');
 var workoutProgramRouter = require('./api/routes/workoutProgram');
+var workLogRouter = require('./api/routes/workLog');
 // configure the app to use bodyParser()
 app.use(bodyParser.urlencoded({
     extended: true
@@ -21,7 +22,7 @@ app.use(cors())
 
 app.use('/api/users', userRouter);
 app.use('/api/workoutPrograms', workoutProgramRouter);
-
+app.use('/api/workLog', workLogRouter)
 // catch for unauthorized people. (bad token)
 app.use(function (err, req, res, next) {
     if (err.name === 'UnauthorizedError') {
