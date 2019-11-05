@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var workLogModel = require('../models/workLog');
+const User = require('../models/user.js')
 
 
 module.exports.createWorkLog = function (req, res) {
@@ -25,11 +26,13 @@ module.exports.createWorkLog = function (req, res) {
 }
 
 module.exports.getWorkLog = function (req, res) {
-    workLogModel.find({}, function (err, workLog) {
-        if (!workLog) {
+    console.log(req.payload)
+    User.findById(req.payload._id, function (err, user) {
+        if (!user) {
             res.status(400).send('no workout program with that id')
         }
-        console.log("Fandt et program", workLog)
-        res.status(200).send(workLog);
+        console.log("Fandt en user", user)
+        console.log("Det her er hans worklogs", user.workLogs)
+        res.status(200).send(user.workLogs);
     });
 }

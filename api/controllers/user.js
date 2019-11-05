@@ -1,4 +1,3 @@
-
 const express = require('express')
 const User = require('../models/user.js')
 const auth = require("../middleware/auth")
@@ -37,7 +36,6 @@ const createUser = async function (req, res) {
             res.status(400).send("User already exist");
         } else {
             await userToSave.save(function (err, result) {
-                console.log("DET GIK SGU GODT")
                 if (err) console.log("ERROR ON SAVE", err);
             })
             //const token = await userToSave.generateAuthToken()
@@ -73,7 +71,6 @@ const getUser = async function (req, res) {
 
 const getUsers = async function (req, res) {
     User.find({}, function (err, users) {
-        if (err) console.log("INGEN USERS")
         console.log(users);
         res.status(200).send(users)
     })

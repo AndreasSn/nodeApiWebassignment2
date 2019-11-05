@@ -11,6 +11,7 @@ router.post('/login', userController.login);
 
 router.post('/addWorkLog', auth,  userController.addWorkLog);
 
+
 router.get('/user', auth, userController.getUser);
 
 router.get('/allUsers', userController.getUsers);
