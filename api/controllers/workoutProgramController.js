@@ -43,6 +43,7 @@ module.exports.getWorkoutProgramsById = function ( req, res){
     
     WorkoutModel.find({_id : {$in: programIds}}, function (err, data) {
         console.log(data);
+        res.status(200).json(data);
     })
 }
 
