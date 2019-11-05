@@ -67,3 +67,52 @@ module.exports.addExercise = function (req, res) {
         });
     });
 }
+
+module.exports.getAllWorkoutPrograms = function (req, res) {
+    var error = req.query.err;
+    WorkoutModel.find({}, function (err, items) {
+        if (err) console.log("øv bøv", err)
+        
+        res.status(200).send(items);
+    });
+};
+
+module.exports.getAllExercises = function (req, res) {
+    console.log(req.body);
+
+    var exerciseModel;
+
+    var workoutprogramid = req.params.id;
+    var workoutProgram = WorkoutModel.findById(workoutprogramid, function (err, doc) {
+        var parent = doc;
+        exerciseModel = mongoose.model('exerciseModel', exerciseSchema);
+        var exercise = new exerciseModel({
+            exercise: req.body.exercise,
+            description: req.body.description,
+            set: req.body.set,
+            reps_time: req.body.reps
+        });
+
+        //console.log("id: ", workoutprogramid);
+        //console.log("exerciseModel: ", exerciseModel);
+
+
+        workoutProgram.findOne({}, function (err, item) {
+            if (err) console.log("Error getting exercises", err)
+            
+            //console.log("item: ", item.exercises);
+            
+            res.status(200).send(item.exercises);
+        });
+
+        //res.status(200).send(doc.); 
+        //parent.exercises.push(exercise);
+
+        //parent.save(function (err) {
+        //    if (err) {
+        //        console.log(err.message);
+        //    }
+        //    res.status(201).send(parent);
+        //});
+    });
+}

@@ -9,4 +9,5 @@ router.get('/getWorkoutProgram/:id', auth, workoutProgramController.getWorkoutPr
 router.post('/createWorkoutProgram', auth,  workoutProgramController.createWorkoutProgram);
 
 router.post('/addexercise/:id', auth,  workoutProgramController.addExercise);
+router.get('/getExercises/:id', auth,  workoutProgramController.getAllExercises);
 module.exports = router;
