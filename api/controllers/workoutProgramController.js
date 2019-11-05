@@ -27,7 +27,7 @@ module.exports.createWorkoutProgram = function (req, res) {
         }
 
         console.log("A workout program with name: " + req.body.name + " was succesfully created!");
-        res.status(201).send(req.body.name);
+        res.status(201).json(req.body.name);
         // saved!
     });
 }
