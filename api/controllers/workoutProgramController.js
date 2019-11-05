@@ -32,6 +32,19 @@ module.exports.createWorkoutProgram = function (req, res) {
     });
 }
 
+module.exports.getWorkoutProgramsById = function ( req, res){
+    var programIds = [];
+    console.log("Body", req.body)
+    req.body.forEach(program => {
+        programIds.push(mongoose.Types.ObjectId( program.workoutProgramId))
+        console.log("Workout program ids ",program.workoutProgramId);
+    });
+    console.log("Program ids ",programIds)
+    
+    WorkoutModel.find({_id : {$in: programIds}}, function (err, data) {
+        console.log(data);
+    })
+}
 
 module.exports.getWorkoutProgram = function (req, res) {
     var workoutprogramid = req.params.id;
@@ -67,15 +80,6 @@ module.exports.addExercise = function (req, res) {
         });
     });
 }
-
-module.exports.getAllWorkoutPrograms = function (req, res) {
-    var error = req.query.err;
-    WorkoutModel.find({}, function (err, items) {
-        if (err) console.log("øv bøv", err)
-        
-        res.status(200).send(items);
-    });
-};
 
 module.exports.getAllExercises = function (req, res) {
     console.log(req.body);

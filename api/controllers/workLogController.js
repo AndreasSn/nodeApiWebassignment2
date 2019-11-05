@@ -33,6 +33,7 @@ module.exports.getWorkLog = function (req, res) {
         }
         console.log("Fandt en user", user)
         console.log("Det her er hans worklogs", user.workLogs)
+        
         res.status(200).send(user.workLogs);
     });
 }
