@@ -3,15 +3,10 @@ const express = require('express')
 const User = require('../models/user.js')
 const auth = require("../middleware/auth")
 var mongoose = require('mongoose')
-const router = express.Router()
-const bcrypt = require('bcrypt');
-const saltRounds = 10;
+
 
 const addWorkLog = async function (req, res) {
-    console.log(req.body);
-    console.log("FRA ADD WORK LOG", req.payload)
-    console.log(req.params.id)
-    
+
     User.findById(req.payload._id, function (err, user) {
         var updatedUser = user;
         var workLogModel = mongoose.model('workLog', workLog);
@@ -32,16 +27,24 @@ const addWorkLog = async function (req, res) {
 
 const createUser = async function (req, res) {
     // Create a new user
-    var user = new User(req.body)
+    var userToSave = new User(req.body)
+    const { emailAddress, password } = req.body
+    console.log(emailAddress, password)
     try {
-        await user.save(function (err, result) {
-            if (err) console.log("ERROR ON SAVE", err);
-        })
-        const token = await user.generateAuthToken()
-        res.status(201).send({ user, token })
-
+        const user = await User.findOne({ emailAddress })
+        if (user) {
+            console.log("User already exist !");
+            res.status(400).send("User already exist");
+        } else {
+            await userToSave.save(function (err, result) {
+                console.log("DET GIK SGU GODT")
+                if (err) console.log("ERROR ON SAVE", err);
+            })
+            //const token = await userToSave.generateAuthToken()
+            res.status(201).send({ user, token })
+        }
     } catch (error) {
-        console.log("Error in saving user", error)
+        console.log("Something went wrong: ", error)
         res.status(400).send(error)
     }
 }
@@ -69,8 +72,8 @@ const getUser = async function (req, res) {
 }
 
 const getUsers = async function (req, res) {
-    User.find({}, function(err, users) {
-        if(err) console.log("INGEN USERS")
+    User.find({}, function (err, users) {
+        if (err) console.log("INGEN USERS")
         console.log(users);
         res.status(200).send(users)
     })

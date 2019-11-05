@@ -12,7 +12,7 @@ module.exports.getAllWorkoutPrograms = function (req, res) {
 };
 
 module.exports.createWorkoutProgram = function (req, res) {
-    console.log(req.body);
+    console.log("DEN HER BODY !!", req.body);
 
     // Create an instance of model MyModel
     var newWorkoutProgram = new WorkoutModel({
@@ -32,10 +32,6 @@ module.exports.createWorkoutProgram = function (req, res) {
     });
 }
 
-module.exports.createworkoutprogram = function (req, res) {
-    //var error = req.query.err;
-    res.render('createworkoutprogram', { title: 'Dette er en placeholder for title' });
-}
 
 module.exports.getWorkoutProgram = function (req, res) {
     var workoutprogramid = req.params.id;
