@@ -11,5 +11,5 @@ router.post('/createWorkoutProgram', auth,  workoutProgramController.createWorko
 router.post('/addexercise/:id', auth,  workoutProgramController.addExercise);
 router.get('/getExercises/:id', auth,  workoutProgramController.getAllExercises);
 
-router.get('/getWorkourProgramsById', workoutProgramController.getWorkoutProgramsById);
+router.post('/getWorkourProgramsById', workoutProgramController.getWorkoutProgramsById);
 module.exports = router;
