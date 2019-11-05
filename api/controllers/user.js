@@ -38,8 +38,7 @@ const createUser = async function (req, res) {
             await userToSave.save(function (err, result) {
                 if (err) console.log("ERROR ON SAVE", err);
             })
-            //const token = await userToSave.generateAuthToken()
-            res.status(201).send({ user, token })
+            res.status(201).send({ user })
         }
     } catch (error) {
         console.log("Something went wrong: ", error)
